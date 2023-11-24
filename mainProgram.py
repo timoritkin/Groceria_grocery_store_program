@@ -433,7 +433,7 @@ class ProductWindow:
         button6 = customtkinter.CTkButton(
             master=dairy_tab,
             command=lambda: self.show_products(6),
-            text="Pet Supplies",
+            text="Vegetables",
             font=main_font,
             text_color=main_color,
             hover=True,
@@ -501,7 +501,7 @@ class ProductWindow:
         button10 = customtkinter.CTkButton(
             master=dairy_tab,
             command=lambda: self.show_products(10),
-            text="Nuts and dried fruits",
+            text="Fruits",
             font=main_font,
             text_color=main_color,
             hover=True,
@@ -684,23 +684,41 @@ class ProductWindow:
     def getImage(self, prod_id):
 
         product_images = {
-            1: "Imegies/TnuvaMilk.jpg", 2: "Imegies/YotvataMilk.jpg", 3: "Imegies/Tapochips_elite.jpg"
-            , 4: "Imegies/pringels.jpg", 5: "Imegies/cottageTnuva.jpg", 6: "Imegies/emek_cheese.jpg",
-            7: "Imegies/butter_Tnuva.jpg", 8: "Imegies/milki-Elite.jpg", 9: "Imegies/eggs.jpg",
-            10: "Imegies/bread_angel.jpg",
-            11: "Imegies/coca_cola.jpg", 12: "Imegies/sprite.jpg", 13: "Imegies/Prigat.jpg", 14: "Imegies/nestea.jpg",
-            15: "Imegies/fanta.jpg",
-            16: "Imegies/jacobs.jpg", 17: "Imegies/doveDeodorant.jpg", 18: "Imegies/deodorantGillette.jpg",
-            19: "Imegies/colgate.jpg",
-            20: "Imegies/listerine.jpg", 21: "Imegies/doveDeodorant.jpg", 22: "Imegies/headAndShoulders.jpg",
-            23: "Imegies/chicken.jpg"
-            , 24: "Imegies/salomon.jpg", 25: "Imegies/sano_javel_wc.jpg", 26: "Imegies/sano_javel_bleach cleaner.jpg",
-            27: "Imegies/fairy.jpg"
-            , 28: "Imegies/bread_american.jpg", 29: "Imegies/Rye bread.jpg", 30: "Imegies/buns_berman.jpg"
-            , 31: "Imegies/monge- dog food.jpg", 32: "Imegies/mongo-cat food.jpg", 33: "Imegies/pro plan- dog food.jpg",
-            34: "Imegies/friskies- cat food.jpg", 35: "Imegies/ROTW_Basmati.jpg",
-            36: "Imegies/pistachio nuts.jpg", 37: "Imegies/Prunes-Pitted.jpg",
-            38: "Imegies/frozen pizza.jpg", 39: "Imegies/frozen_schnitzel.jpg"
+            1: "products-imagies/cartoon_milk_bottel.png",
+            2: "products-imagies/glass-bottle-milk.jpg",
+            3: "products-imagies/regular-chips.jpg",
+            4: "products-imagies/best-chips.jpg",
+            5: "products-imagies/cottage-cheese.jpg",
+            6: "products-imagies/delicious-piece-cheese.jpg",
+            7: "products-imagies/butter.jpg",
+            8: "products-imagies/glass-chocolate-milk-dark-surface.jpg",
+            9: "products-imagies/eggs.jpg",
+            10: "products-imagies/delicious-bread-table.jpg",
+            11: "products-imagies/classic-zero.png",
+            12: "products-imagies/minty-lemon.png",
+            13: "products-imagies/cherry-drink.png",
+            14: "products-imagies/strawberry-drink.png",
+            15: "products-imagies/sparkling-drink.png",
+            16: "products-imagies/spray-deodorant-1413393.jpg",
+            17: "products-imagies/toothpaste.jpg",
+            18: "products-imagies/toothbrush.jpg",
+            19: "products-imagies/white-body-lotion-bottle-1427881.jpg",
+            20: "products-imagies/chicken-breast.jpg",
+            21: "products-imagies/raw-salmon-2312820.jpg",
+            22: "products-imagies/toilet-bowl-cleaner.png",
+            26: "products-imagies/bleach.png",
+            24: "products-imagies/dish-soap.png",
+            27: "products-imagies/whole-grain-flour-bread.jpg",
+            28: "products-imagies/avocados.jpg",
+            29: "products-imagies/cucumber.jpg",
+            40: "products-imagies/strawberry.jpg",
+            33: "products-imagies/apple.jpg",
+            34: "products-imagies/banana.jpg",
+            38: "products-imagies/frozen pizza.jpg",
+            39: "products-imagies/frozen_schnitzel.jpg",
+            35: "products-imagies/ROTW_Basmati.jpg",
+            30: "products-imagies/tomatoe.jpg",
+
 
         }
         if prod_id in product_images:
