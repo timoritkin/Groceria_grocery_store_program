@@ -105,6 +105,7 @@ class MainWindow:
         customer_id, order_id, first_name, last_name = login(cur, conn, phone_number, password)
         if customer_id:
             ProductWindow(self.root, first_name, last_name)
+
     #
     def show_registration_window(self):
         self.root.withdraw()
@@ -532,7 +533,6 @@ class ProductWindow:
         # button11 = tk.Button(dairy_tab, text="Frozen Foods", command=lambda: self.show_products(11))
         button11.pack(side="left", padx=5, pady=5)
 
-
         # Create a frame to display products dynamically
         self.products_frame = tk.Frame(product_window, bg=main_color)
         self.products_frame.pack(fill="both", expand=True)
@@ -686,11 +686,16 @@ class ProductWindow:
         product_images = {
             1: "Imegies/TnuvaMilk.jpg", 2: "Imegies/YotvataMilk.jpg", 3: "Imegies/Tapochips_elite.jpg"
             , 4: "Imegies/pringels.jpg", 5: "Imegies/cottageTnuva.jpg", 6: "Imegies/emek_cheese.jpg",
-            7: "Imegies/butter_Tnuva.jpg", 8: "Imegies/milki-Elite.jpg", 9: "Imegies/eggs.jpg", 10: "Imegies/bread_angel.jpg",
-            11: "Imegies/coca_cola.jpg", 12: "Imegies/sprite.jpg", 13: "Imegies/Prigat.jpg", 14: "Imegies/nestea.jpg", 15: "Imegies/fanta.jpg",
-            16: "Imegies/jacobs.jpg", 17: "Imegies/doveDeodorant.jpg", 18: "Imegies/deodorantGillette.jpg", 19: "Imegies/colgate.jpg",
-            20: "Imegies/listerine.jpg", 21: "Imegies/doveDeodorant.jpg", 22: "Imegies/headAndShoulders.jpg", 23: "Imegies/chicken.jpg"
-            , 24: "Imegies/salomon.jpg", 25: "Imegies/sano_javel_wc.jpg", 26: "Imegies/sano_javel_bleach cleaner.jpg", 27: "Imegies/fairy.jpg"
+            7: "Imegies/butter_Tnuva.jpg", 8: "Imegies/milki-Elite.jpg", 9: "Imegies/eggs.jpg",
+            10: "Imegies/bread_angel.jpg",
+            11: "Imegies/coca_cola.jpg", 12: "Imegies/sprite.jpg", 13: "Imegies/Prigat.jpg", 14: "Imegies/nestea.jpg",
+            15: "Imegies/fanta.jpg",
+            16: "Imegies/jacobs.jpg", 17: "Imegies/doveDeodorant.jpg", 18: "Imegies/deodorantGillette.jpg",
+            19: "Imegies/colgate.jpg",
+            20: "Imegies/listerine.jpg", 21: "Imegies/doveDeodorant.jpg", 22: "Imegies/headAndShoulders.jpg",
+            23: "Imegies/chicken.jpg"
+            , 24: "Imegies/salomon.jpg", 25: "Imegies/sano_javel_wc.jpg", 26: "Imegies/sano_javel_bleach cleaner.jpg",
+            27: "Imegies/fairy.jpg"
             , 28: "Imegies/bread_american.jpg", 29: "Imegies/Rye bread.jpg", 30: "Imegies/buns_berman.jpg"
             , 31: "Imegies/monge- dog food.jpg", 32: "Imegies/mongo-cat food.jpg", 33: "Imegies/pro plan- dog food.jpg",
             34: "Imegies/friskies- cat food.jpg"
@@ -704,7 +709,7 @@ class ProductWindow:
     def show_cart_window(self):
         cart_window = tk.Toplevel(self.root, background=main_color)
         cart_window.title("My Cart")
-        cart_window.resizable(False,False)
+        cart_window.resizable(False, False)
         p1 = PhotoImage(file='Imegies/GroceriaLogo1.png')
         # Setting icon of master window
         cart_window.iconphoto(False, p1)
@@ -763,7 +768,6 @@ class ProductWindow:
                                       background=blue_light_color)
             quantity_label.grid(row=1, column=1, sticky="ew", padx=10, pady=10)
 
-
             remove_button = customtkinter.CTkButton(
                 master=Prod_frame,
                 command=lambda del_order_item_id=order_item_id, remove_price=price,
@@ -783,7 +787,6 @@ class ProductWindow:
                 bg_color=blue_light_color,
                 fg_color="#F45050")
             remove_button.grid(row=1, column=2, sticky="ew", padx=10, pady=10)
-
 
         buy_button = customtkinter.CTkButton(
             master=cart_window,
@@ -824,7 +827,7 @@ class ProductWindow:
         self.cart_frame.withdraw()  # Hide the main window while the product window is open
         buy_window = tk.Toplevel(self.root, background=main_color)
         buy_window.title("Buy process")
-        buy_window.resizable(False,False)
+        buy_window.resizable(False, False)
         p1 = PhotoImage(file='Imegies/GroceriaLogo1.png')
         # Setting icon of master window
         buy_window.iconphoto(False, p1)
@@ -1085,12 +1088,13 @@ class ProductWindow:
         set_shipment(cur, conn, city, street, bui_num, customer_id)
         print("done")
 
-    def _on_mousewheel(self, event,canvas):
+    def _on_mousewheel(self, event, canvas):
         canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
+
     def show_history_window(self):
         history_window = tk.Toplevel(self.root, background=main_color)
         history_window.title("My History")
-        history_window.resizable(False,False)
+        history_window.resizable(False, False)
         p1 = PhotoImage(file='Imegies/GroceriaLogo1.png')
         # Setting icon of master window
         history_window.iconphoto(False, p1)
@@ -1156,7 +1160,8 @@ class ProductWindow:
                                                                                                           c_shipment_ct,
                                                                                                           c_shipment_st,
                                                                                                           c_shipment_bn,
-                                                                                                          c_date,t_price),
+                                                                                                          c_date,
+                                                                                                          t_price),
                     text="Invoice",
                     font=main_font,
                     text_color=main_color,
@@ -1174,15 +1179,11 @@ class ProductWindow:
         frame.update_idletasks()
         frame.bind("<Configure>", canvas.config(scrollregion=canvas.bbox("all")))
 
-
-
-
-
-    def show_check(self, order_id, shipment_city, shipment_str, shipment_bn, date,t_price):
+    def show_check(self, order_id, shipment_city, shipment_str, shipment_bn, date, t_price):
         check_window = tk.Toplevel(self.root)  # Create a new Toplevel window
         check_window.title(f"Invoice number: {order_id}")
         check_window.geometry("470x600")
-        check_window.resizable(False,False)
+        check_window.resizable(False, False)
         scroll_y = Scrollbar(check_window, orient=VERTICAL)
         check_txt = tk.Text(check_window, height=36, width=55)
         check_txt.tag_configure("center", justify="center")

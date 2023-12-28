@@ -1,3 +1,5 @@
+import hashlib
+import os
 from tkinter import messagebox
 
 import mysql.connector
@@ -41,7 +43,7 @@ def login(cur, conn, phone_number, password):
         # Get the last inserted order_id
         order_id = cur.lastrowid
 
-        # Now you can use the order_id for the user's current order
+        # Now we can use the order_id for the user's current order
 
         return user_id, order_id, first_name, last_name
     else:
@@ -105,6 +107,7 @@ def add_to_order_item(cur, conn, product_id, quantity, customer_id):
 
 
 def register(cur, conn, data):
+
     query = f"""INSERT INTO customer (
         customer_id,
         first_name,
@@ -132,6 +135,17 @@ def register(cur, conn, data):
 
     cur.execute(query)
     conn.commit()
+
+
+def hash_password(password, salt=None):
+    if salt is None:
+        salt = os.urandom(32)  # Generate a random salt
+
+    # Combine the password and salt, and then hash them
+    hashed_password = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000)
+
+    # Return the salt and hashed password
+    return salt, hashed_password
 
 
 def get_all_products(cursor, conn, search_category_id):
