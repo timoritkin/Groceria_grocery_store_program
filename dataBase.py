@@ -1,7 +1,6 @@
 import hashlib
 import os
 from tkinter import messagebox
-
 import mysql.connector
 
 
@@ -20,18 +19,26 @@ def initialize_connection():
 
 
 def login(cur, conn, phone_number, password):
-    query = """SELECT customer_id, first_name, last_name
-               FROM customer
-               WHERE phone_number = %s AND password = %s"""
+    # query = """SELECT customer_id, first_name, last_name
+    #            FROM customer
+    #            WHERE phone_number = %s """
+    #
+    # cur.execute(query, phone_number)
+    # result = cur.fetchone()
 
-    cur.execute(query, (phone_number, password))
+    query = """SELECT cust_password, security_salt, customer_id, first_name, last_name
+               FROM customer
+               WHERE phone_number = %s """
+
+    cur.execute(query, (phone_number,))
     result = cur.fetchone()
 
-    if result is not None:
+    print(type(result[0]), type(result[1]))
+    if result is not None and verify_password(result[0], password, result[1]):
 
-        user_id = result[0]
-        first_name = result[1]
-        last_name = result[2]
+        user_id = result[2]
+        first_name = result[3]
+        last_name = result[4]
 
         # Create a new order for the logged-in user
         create_order_query = """INSERT INTO my_order (order_date, total_price,
@@ -107,45 +114,69 @@ def add_to_order_item(cur, conn, product_id, quantity, customer_id):
 
 
 def register(cur, conn, data):
-
-    query = f"""INSERT INTO customer (
+    # encrypt the password
+    cust_salt, hashed_password = hash_password(data['password'])
+    query = """INSERT INTO customer (
         customer_id,
         first_name,
         last_name,
         email,
-        password,
+        cust_password,
         phone_number,
         gender,
         street,
         building_num,
-        city
-        
-    ) VALUES (
-        '{data['customer_id']}',
-        '{data['first_name']}',
-        '{data['last_name']}',
-        '{data['email']}',
-        '{data['password']}',
-        '{data['phone_number']}',
-        '{data['gender']}',
-        '{data['street']}',
-        '{data['building_num']}',
-        '{data['city']}'
-    )"""
+        city,
+        security_salt
+    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
-    cur.execute(query)
-    conn.commit()
+    values = (
+        data['customer_id'],
+        data['first_name'],
+        data['last_name'],
+        data['email'],
+        hashed_password,
+        data['phone_number'],
+        data['gender'],
+        data['street'],
+        data['building_num'],
+        data['city'],
+        cust_salt
+    )
+
+    try:
+        cur.execute(query, values)
+        conn.commit()
+        print("Registration successful!")
+    except Exception as e:
+        conn.rollback()
+        print(f"Error during registration: {e}")
 
 
 def hash_password(password, salt=None):
     if salt is None:
         salt = os.urandom(32)  # Generate a random salt
-
+    print(password)
     # Combine the password and salt, and then hash them
     hashed_password = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000)
-
+    print(hashed_password)
     # Return the salt and hashed password
     return salt, hashed_password
+
+
+def verify_password(stored_password, input_password, salt):
+
+    # Hash the input password with the stored salt
+    hashed_input_password = hashlib.pbkdf2_hmac('sha256', input_password.encode('utf-8'), salt, 100000)
+
+    print(hashed_input_password)
+    print(stored_password)
+
+    # Compare the stored hashed password with the newly hashed input password
+    if hashed_input_password == stored_password:
+        return True
+    else:
+        return False
 
 
 def get_all_products(cursor, conn, search_category_id):

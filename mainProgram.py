@@ -698,7 +698,10 @@ class ProductWindow:
             27: "Imegies/fairy.jpg"
             , 28: "Imegies/bread_american.jpg", 29: "Imegies/Rye bread.jpg", 30: "Imegies/buns_berman.jpg"
             , 31: "Imegies/monge- dog food.jpg", 32: "Imegies/mongo-cat food.jpg", 33: "Imegies/pro plan- dog food.jpg",
-            34: "Imegies/friskies- cat food.jpg"
+            34: "Imegies/friskies- cat food.jpg", 35: "Imegies/ROTW_Basmati.jpg",
+            36: "Imegies/pistachio nuts.jpg", 37: "Imegies/Prunes-Pitted.jpg",
+            38: "Imegies/frozen pizza.jpg", 39: "Imegies/frozen_schnitzel.jpg"
+
         }
         if prod_id in product_images:
             image_fileName = product_images[prod_id]
