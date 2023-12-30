@@ -156,10 +156,8 @@ def register(cur, conn, data):
 def hash_password(password, salt=None):
     if salt is None:
         salt = os.urandom(32)  # Generate a random salt
-    print(password)
     # Combine the password and salt, and then hash them
     hashed_password = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000)
-    print(hashed_password)
     # Return the salt and hashed password
     return salt, hashed_password
 
@@ -169,8 +167,7 @@ def verify_password(stored_password, input_password, salt):
     # Hash the input password with the stored salt
     hashed_input_password = hashlib.pbkdf2_hmac('sha256', input_password.encode('utf-8'), salt, 100000)
 
-    print(hashed_input_password)
-    print(stored_password)
+
 
     # Compare the stored hashed password with the newly hashed input password
     if hashed_input_password == stored_password:
