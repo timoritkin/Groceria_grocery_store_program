@@ -25,7 +25,7 @@ class MainWindow:
         self.root.title("Gorceria")
         self.root.geometry("300x400")
 
-        p1 = PhotoImage(file='Imegies/GroceriaLogo1.png')
+        p1 = PhotoImage(file='products-imagies/GroceriaLogo1.png')
         # Setting icon of master window
         self.root.iconphoto(False, p1)
 
@@ -35,7 +35,7 @@ class MainWindow:
         root.configure(bg=main_color)
 
         # Load the image file
-        self.logo_image = Image.open("Imegies/GroceriaLogo.png")
+        self.logo_image = Image.open("products-imagies/GroceriaLogo.png")
         self.logo_image.resize((200, 200))
         self.logo_image_tk = ImageTk.PhotoImage(self.logo_image)
         # Create a label widget
@@ -270,7 +270,7 @@ class ProductWindow:
         product_window = tk.Toplevel(self.root)
         product_window.title("Groceria")
 
-        p1 = PhotoImage(file='Imegies/GroceriaLogo1.png')
+        p1 = PhotoImage(file='products-imagies/GroceriaLogo1.png')
         # Setting icon of master window
         product_window.iconphoto(False, p1)
 
@@ -849,7 +849,7 @@ class ProductWindow:
         buy_window = tk.Toplevel(self.root, background=main_color)
         buy_window.title("Buy process")
         buy_window.resizable(False, False)
-        p1 = PhotoImage(file='Imegies/GroceriaLogo1.png')
+        p1 = PhotoImage(file='products-imagies/GroceriaLogo1.png')
         # Setting icon of master window
         buy_window.iconphoto(False, p1)
         main_font = customtkinter.CTkFont(family="Helvetica", size=13)
@@ -1032,7 +1032,7 @@ class ProductWindow:
         self.window.withdraw()  # Hide the main window while the product window is open
         change_address = tk.Toplevel(self.root, background=main_color)
         change_address.title("Change address")
-        p1 = PhotoImage(file='Imegies/GroceriaLogo1.png')
+        p1 = PhotoImage(file='products-imagies/GroceriaLogo1.png')
         # Setting icon of master window
         change_address.iconphoto(False, p1)
         main_font = customtkinter.CTkFont(family="Helvetica", size=13)
