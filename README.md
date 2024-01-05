@@ -1,4 +1,4 @@
-# Groceria_online_shop
+# Groceria- grocery store program
 Welcome to the Grocery Store Management System – an efficient and user-friendly application developed in Python with seamless integration of a MySQL database.
 This project serves as a testament to my skills in software development, demonstrating proficiency in Python programming, database management, and security   .
 
