@@ -9,8 +9,8 @@ def initialize_connection():
         host='localhost',
 
         user='root',
-        password='123456',
-        database='mini_market_db'
+        password='******',
+        database='mini_*****_db'
     )
     # cur == cur
     cursor = conn.cursor()
